@@ -4,6 +4,7 @@ import torch.nn as nn
 
 app = Flask(__name__)
 
+
 class DiabetesRegressor(nn.Module):
     def __init__(self, input_features=10):
         super().__init__()
@@ -20,6 +21,7 @@ class DiabetesRegressor(nn.Module):
     def forward(self, x):
         return self.model(x)
 
+
 model = DiabetesRegressor()
 model.load_state_dict(
     torch.load(
@@ -30,11 +32,13 @@ model.load_state_dict(
 
 model.eval()
 
+
 @app.route("/")
 def home():
     return {
         "message": "Diabetes Regression API is running"
     }
+
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -54,6 +58,7 @@ def predict():
     return jsonify({
         "prediction": prediction
     })
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)

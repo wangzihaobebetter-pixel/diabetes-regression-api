@@ -2,3 +2,4 @@ flask
 torch
 gunicorn
 numpy
+flake8
